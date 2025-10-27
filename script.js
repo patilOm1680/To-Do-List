@@ -135,7 +135,12 @@ document.addEventListener("change", function (event) {
                 // event.target.checked = false;
 
             } else if (task.parentElement.id === "completed") {
-                task.remove();
+                
+                let title = task.children[0].children[0];
+                // console.log(title);
+                title.className = "";
+                inProcess.appendChild(task);
+                updateCount();
             }
         }, 300);
 
@@ -195,7 +200,8 @@ document.addEventListener("click", function (event) {
 // Adding the tasks 
 const addBtns = document.querySelectorAll(".addBtn");
 const inputs = document.querySelectorAll(".taskInput");
-
+// console.log(addBtns);
+// console.log(inputs);
 addBtns.forEach((btn, index) => {
     btn.addEventListener("click", () => {
         const value = inputs[index].value;
