@@ -107,7 +107,7 @@ document.addEventListener("change", function (event) {
             } else if (task.parentElement.id === "completed") {
                 task.remove();
             }
-        }, 700);
+        }, 300);
 
     }
 });
