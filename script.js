@@ -41,8 +41,7 @@ let lists = document.getElementsByClassName("list");
 //     }
 // }, 100);
 
-
-for (list of lists) {
+function dragAndDrop(list){
     list.addEventListener("dragstart", function (event) {
         let currentItem = event.target;
 
@@ -54,6 +53,7 @@ for (list of lists) {
             // console.log(title);
             title.className = "";
             inProcess.appendChild(currentItem);
+            updateCount();
             removeCheck(currentItem);
             currentItem=null;
         });
@@ -67,6 +67,7 @@ for (list of lists) {
             // console.log(title);
             title.className = "";
             todo.appendChild(currentItem);
+            updateCount();
             removeCheck(currentItem);
             currentItem=null;
         });
@@ -80,6 +81,7 @@ for (list of lists) {
             // console.log(title);
             title.className = "doneContent";
             done.appendChild(currentItem);
+            updateCount();
             currentItem.children[0].children[1].checked = true;
             currentItem = null;
         });
@@ -87,15 +89,23 @@ for (list of lists) {
 
     });
 }
+
 function removeCheck(currentItem) {
     currentItem.children[0].children[1].checked = false;
 }
+
+// static tasks 
+for (list of lists) {
+    dragAndDrop(list);
+}
+
 
 // const checkboxs=document.getElementsByTagName("input");
 // for (const checkbox of checkboxs) {
 //     console.log(checkbox.checked);
 // }
 
+// checkbox- check to move 
 document.addEventListener("change", function (event) {
     if (event.target.classList.contains("taskCheckbox")) {
         const task = event.target.closest(".list");
@@ -103,12 +113,14 @@ document.addEventListener("change", function (event) {
         setTimeout(() => {
             if (task.parentElement.id === "todo") {
                 inProcess.appendChild(task);
+                updateCount();
                 event.target.checked = false;
             } else if (task.parentElement.id === "inProcess") {
                 let title = task.children[0].children[0];
                 // console.log(title);
                 title.className = "doneContent";
                 done.appendChild(task);
+                updateCount();
                 // event.target.checked = false;
 
             } else if (task.parentElement.id === "completed") {
@@ -119,6 +131,7 @@ document.addEventListener("change", function (event) {
     }
 });
 
+// delete tasks 
 document.addEventListener("click", function (event) {
     if (event.target.closest(".deleteBtn")) {
         const task = event.target.closest(".list") || event.target.closest(".doneContent");
@@ -126,6 +139,7 @@ document.addEventListener("click", function (event) {
     }
 });
 
+// Edit tasks 
 document.addEventListener("click", function (event) {
     if (event.target.closest(".editBtn")) {
         const task = event.target.closest(".list") || event.target.closest(".doneContent");
@@ -163,6 +177,8 @@ document.addEventListener("click", function (event) {
 //           </div>";
 // }
 
+
+// Adding the tasks 
 const addBtns = document.querySelectorAll(".addBtn");
 const inputs = document.querySelectorAll(".taskInput");
 
@@ -192,64 +208,25 @@ addBtns.forEach((btn, index) => {
             // console.log(title);
             title.className = "doneContent";
             btn.parentElement.parentElement.appendChild(newList);
+            
         }
         btn.parentElement.parentElement.appendChild(newList);
-
+        updateCount();
 
 
         //drag and drop
-        newList.addEventListener("dragstart", function (event) {
-            let currentItem = event.target;
-            // console.log(currentItem);
-
-            inProcess.addEventListener("dragover", function (event) {
-                event.preventDefault();
-            });
-            inProcess.addEventListener("drop", function (event) {
-                let title = currentItem.children[0].children[0];
-                // console.log(title);
-                title.className = "";
-                inProcess.appendChild(currentItem);
-                removeCheck(currentItem);
-                currentItem = null;
-            });
-
-
-            todo.addEventListener("dragover", function (event) {
-                event.preventDefault();
-            });
-            todo.addEventListener("drop", function (event) {
-                let title = currentItem.children[0].children[0];
-                // console.log(title);
-                title.className = "";
-                todo.appendChild(currentItem);
-                removeCheck(currentItem);
-                currentItem = null;
-            });
-
-
-            done.addEventListener("dragover", function (event) {
-                event.preventDefault();
-            });
-            done.addEventListener("drop", function (event) {
-                // console.log(currentItem.children);
-                let title = currentItem.children[0].children[0];
-                // console.log(title);
-                title.className = "doneContent";
-                // currentItem.children.className="doneContent";
-                done.appendChild(currentItem);
-                currentItem.children[0].children[1].checked = true;
-
-                currentItem = null;
-            });
-
-
-        });
+        dragAndDrop(newList);
 
     });
 });
 
 
-
-
-
+// console.log(todo.children.length);
+// setInterval(() => {
+   
+// }, 100);
+function updateCount(){
+     todo.children[0].children[2].innerHTML=`(${todo.children.length-2})`;
+     inProcess.children[0].children[2].innerHTML=`(${inProcess.children.length-2})`;
+     done.children[0].children[2].innerHTML=`(${done.children.length-2})`;
+}
