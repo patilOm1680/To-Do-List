@@ -2,7 +2,6 @@ let todo = document.getElementById("todo");
 let inProcess = document.getElementById("inProcess");
 let done = document.getElementById("completed");
 
-
 let lists = document.getElementsByClassName("list");
 
 
@@ -44,48 +43,53 @@ let lists = document.getElementsByClassName("list");
 
 
 for (list of lists) {
-        list.addEventListener("dragstart", function (event) {
-            let currentItem = event.target;
+    list.addEventListener("dragstart", function (event) {
+        let currentItem = event.target;
 
-            inProcess.addEventListener("dragover", function (event) {
-                event.preventDefault();
-            });
-            inProcess.addEventListener("drop", function (event) {
-                let title=currentItem.children[0].children[0];
-                // console.log(title);
-                title.className="";
-                inProcess.appendChild(currentItem);
-                currentItem = null;
-            });
-
-
-            todo.addEventListener("dragover", function (event) {
-                event.preventDefault();
-            });
-            todo.addEventListener("drop", function (event) {
-                let title=currentItem.children[0].children[0];
-                // console.log(title);
-                title.className="";
-                todo.appendChild(currentItem);
-                currentItem = null;
-            });
-
-
-            done.addEventListener("dragover", function (event) {
-                event.preventDefault();
-            });
-            done.addEventListener("drop", function (event) {
-                let title=currentItem.children[0].children[0];
-                // console.log(title);
-                title.className="doneContent";
-                done.appendChild(currentItem);
-                currentItem = null;
-            });
-
-
+        inProcess.addEventListener("dragover", function (event) {
+            event.preventDefault();
         });
-    }
+        inProcess.addEventListener("drop", function (event) {
+            let title = currentItem.children[0].children[0];
+            // console.log(title);
+            title.className = "";
+            inProcess.appendChild(currentItem);
+            removeCheck(currentItem);
+            currentItem=null;
+        });
 
+
+        todo.addEventListener("dragover", function (event) {
+            event.preventDefault();
+        });
+        todo.addEventListener("drop", function (event) {
+            let title = currentItem.children[0].children[0];
+            // console.log(title);
+            title.className = "";
+            todo.appendChild(currentItem);
+            removeCheck(currentItem);
+            currentItem=null;
+        });
+
+
+        done.addEventListener("dragover", function (event) {
+            event.preventDefault();
+        });
+        done.addEventListener("drop", function (event) {
+            let title = currentItem.children[0].children[0];
+            // console.log(title);
+            title.className = "doneContent";
+            done.appendChild(currentItem);
+            currentItem.children[0].children[1].checked = true;
+            currentItem = null;
+        });
+
+
+    });
+}
+function removeCheck(currentItem) {
+    currentItem.children[0].children[1].checked = false;
+}
 
 // const checkboxs=document.getElementsByTagName("input");
 // for (const checkbox of checkboxs) {
@@ -102,7 +106,7 @@ document.addEventListener("change", function (event) {
                 event.target.checked = false;
             } else if (task.parentElement.id === "inProcess") {
                 done.appendChild(task);
-                event.target.checked = false;
+                // event.target.checked = false;
 
             } else if (task.parentElement.id === "completed") {
                 task.remove();
@@ -165,6 +169,7 @@ addBtns.forEach((btn, index) => {
       <div class="listDes">
         <p>${value}</p>
         <input type="checkbox" class="taskCheckbox">
+        <button class="editBtn"><i class="fa-solid fa-pen-to-square"></i></button>
         <button class="deleteBtn"><i class="fa-solid fa-trash"></i></button>
       </div>
     `;
@@ -172,11 +177,11 @@ addBtns.forEach((btn, index) => {
 
         // console.log(btn.parentElement);
         // console.log(btn.parentElement.parentElement);
-        
-        if(index==2){
-            let title=newList.children[0].children[0];
-                // console.log(title);
-            title.className="doneContent";
+
+        if (index == 2) {
+            let title = newList.children[0].children[0];
+            // console.log(title);
+            title.className = "doneContent";
             btn.parentElement.parentElement.appendChild(newList);
         }
         btn.parentElement.parentElement.appendChild(newList);
@@ -192,10 +197,11 @@ addBtns.forEach((btn, index) => {
                 event.preventDefault();
             });
             inProcess.addEventListener("drop", function (event) {
-                let title=currentItem.children[0].children[0];
+                let title = currentItem.children[0].children[0];
                 // console.log(title);
-                title.className="";
+                title.className = "";
                 inProcess.appendChild(currentItem);
+                removeCheck(currentItem);
                 currentItem = null;
             });
 
@@ -204,10 +210,11 @@ addBtns.forEach((btn, index) => {
                 event.preventDefault();
             });
             todo.addEventListener("drop", function (event) {
-                let title=currentItem.children[0].children[0];
+                let title = currentItem.children[0].children[0];
                 // console.log(title);
-                title.className="";
+                title.className = "";
                 todo.appendChild(currentItem);
+                removeCheck(currentItem);
                 currentItem = null;
             });
 
@@ -217,12 +224,13 @@ addBtns.forEach((btn, index) => {
             });
             done.addEventListener("drop", function (event) {
                 // console.log(currentItem.children);
-                let title=currentItem.children[0].children[0];
+                let title = currentItem.children[0].children[0];
                 // console.log(title);
-                title.className="doneContent";
+                title.className = "doneContent";
                 // currentItem.children.className="doneContent";
                 done.appendChild(currentItem);
-                
+                currentItem.children[0].children[1].checked = true;
+
                 currentItem = null;
             });
 

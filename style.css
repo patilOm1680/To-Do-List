@@ -27,7 +27,7 @@ body {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     width: 95%;
     max-width: 1300px;
-    
+
 }
 
 .container h1 {
@@ -113,29 +113,43 @@ body {
 .listDes {
     display: flex;
     align-items: center;
+    /* gap: 10px; */
     justify-content: space-around;
 }
 
-input[type="checkbox"]{
+input[type="checkbox"] {
     margin-left: 25px;
     transform: scale(1.5);
 }
 
 .deleteBtn {
-  background: none;
-  border: none;
-  color: #ff4d4d;
-  cursor: pointer;
-  font-size: 1.2rem;
-  margin-left: 20px;
-  transition: transform 0.2s ease, color 0.2s ease;
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-left: 5px;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
+
+.editBtn {
+    background: none;
+    border: none;
+    color: #63E6BE;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-left: 15px;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
 
 .deleteBtn:hover {
-  color: #ff0000;
-  transform: scale(1.2);
+    color: #ff0000;
+    transform: scale(1.2);
 }
-
+.editBtn:hover{
+    transform: scale(1.2);
+}
 .addTask {
     display: flex;
     gap: 8px;
@@ -144,11 +158,10 @@ input[type="checkbox"]{
 
 .taskInput {
     height: 35px;
-    flex: 1;
+    width: 85%;
     padding: 6px 8px;
     border-radius: 8px;
     border: none;
-    outline: none;
 }
 
 .addBtn {
@@ -166,9 +179,10 @@ input[type="checkbox"]{
 }
 
 .doneContent {
-      text-decoration: line-through;
-      color: gray;
+    text-decoration: line-through;
+    color: gray;
 }
+
 @media (max-width: 1200px) {
     .innerBox {
         flex-direction: column;
@@ -178,6 +192,10 @@ input[type="checkbox"]{
     #todo,
     #inProcess,
     #completed {
-        width: 90%;
+        width: 100%;
+    }
+
+    h2 {
+        font-size: x-large;
     }
 }
