@@ -94,6 +94,17 @@ function removeCheck(currentItem) {
     currentItem.children[0].children[1].checked = false;
 }
 
+
+// console.log(todo.children.length);
+// setInterval(() => {
+   
+// }, 100);
+function updateCount(){
+     todo.children[0].children[2].innerHTML=`(${todo.children.length-2})`;
+     inProcess.children[0].children[2].innerHTML=`(${inProcess.children.length-2})`;
+     done.children[0].children[2].innerHTML=`(${done.children.length-2})`;
+}
+
 // static tasks 
 for (list of lists) {
     dragAndDrop(list);
@@ -144,7 +155,10 @@ document.addEventListener("click", function (event) {
     if (event.target.closest(".editBtn")) {
         const task = event.target.closest(".list") || event.target.closest(".doneContent");
         const newItem=prompt("Rename the Task");
-        task.children[0].children[0].innerHTML=`${newItem}`;
+        if(newItem){
+            task.children[0].children[0].innerHTML=`${newItem}`;
+        }
+        
     }
 });
 
@@ -221,12 +235,3 @@ addBtns.forEach((btn, index) => {
 });
 
 
-// console.log(todo.children.length);
-// setInterval(() => {
-   
-// }, 100);
-function updateCount(){
-     todo.children[0].children[2].innerHTML=`(${todo.children.length-2})`;
-     inProcess.children[0].children[2].innerHTML=`(${inProcess.children.length-2})`;
-     done.children[0].children[2].innerHTML=`(${done.children.length-2})`;
-}

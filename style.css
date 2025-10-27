@@ -162,6 +162,7 @@ input[type="checkbox"] {
     padding: 6px 8px;
     border-radius: 8px;
     border: none;
+    outline: none;
 }
 
 .addBtn {
@@ -197,5 +198,8 @@ input[type="checkbox"] {
 
     h2 {
         font-size: x-large;
+    }
+    .list{
+        padding-inline:40px;
     }
 }
