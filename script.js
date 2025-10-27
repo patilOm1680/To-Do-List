@@ -105,6 +105,9 @@ document.addEventListener("change", function (event) {
                 inProcess.appendChild(task);
                 event.target.checked = false;
             } else if (task.parentElement.id === "inProcess") {
+                let title = task.children[0].children[0];
+                // console.log(title);
+                title.className = "doneContent";
                 done.appendChild(task);
                 // event.target.checked = false;
 
@@ -123,7 +126,13 @@ document.addEventListener("click", function (event) {
     }
 });
 
-
+document.addEventListener("click", function (event) {
+    if (event.target.closest(".editBtn")) {
+        const task = event.target.closest(".list") || event.target.closest(".doneContent");
+        const newItem=prompt("Enter the Item");
+        task.children[0].children[0].innerHTML=`${newItem}`;
+    }
+});
 
 
 
