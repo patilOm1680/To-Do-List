@@ -129,7 +129,7 @@ document.addEventListener("click", function (event) {
 document.addEventListener("click", function (event) {
     if (event.target.closest(".editBtn")) {
         const task = event.target.closest(".list") || event.target.closest(".doneContent");
-        const newItem=prompt("Enter the Item");
+        const newItem=prompt("Rename the Task");
         task.children[0].children[0].innerHTML=`${newItem}`;
     }
 });
