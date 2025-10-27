@@ -227,6 +227,7 @@ addBtns.forEach((btn, index) => {
             let title = newList.children[0].children[0];
             // console.log(title);
             title.className = "doneContent";
+            newList.children[0].children[1].checked=true;
             btn.parentElement.parentElement.appendChild(newList);
             
         }
