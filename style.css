@@ -1,0 +1,183 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+    /* background-attachment: fixed; */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    width: 95%;
+    max-width: 1300px;
+    
+}
+
+.container h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.innerBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+}
+
+#todo,
+#inProcess,
+#completed {
+    width: 380px;
+    min-height: 420px;
+    padding: 15px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(12px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-height: 700px;
+    overflow: auto;
+}
+
+#todo:hover,
+#inProcess:hover,
+#completed:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.Headings {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0 20px 10px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.Headings img {
+    width: 28px;
+    height: 28px;
+}
+
+.list {
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    height: 60px;
+    margin: 15px;
+    cursor: grab;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.list:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.list:active {
+    /* cursor: grabbing; */
+    transform: scale(0.98);
+}
+
+.listDes {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+input[type="checkbox"]{
+    margin-left: 25px;
+    transform: scale(1.5);
+}
+
+.deleteBtn {
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-left: 20px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.deleteBtn:hover {
+  color: #ff0000;
+  transform: scale(1.2);
+}
+
+.addTask {
+    display: flex;
+    gap: 8px;
+    margin: 15px;
+}
+
+.taskInput {
+    height: 35px;
+    flex: 1;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+}
+
+.addBtn {
+    background-color: rgb(153, 142, 142);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.addBtn:hover {
+    background: #43a047;
+}
+
+.doneContent {
+      text-decoration: line-through;
+      color: gray;
+}
+@media (max-width: 1200px) {
+    .innerBox {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #todo,
+    #inProcess,
+    #completed {
+        width: 90%;
+    }
+}
